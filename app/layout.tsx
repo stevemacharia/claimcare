@@ -1,5 +1,8 @@
 import Footer from '@/components/Footer'
 import Navbar from '@/components/Navbar'
+// src/app/layout.tsx
+import { SessionProvider } from "next-auth/react";
+import type { AppProps } from "next/app";
 import type { Metadata } from "next";
 import "./globals.css";
 
@@ -20,7 +23,7 @@ export default function RootLayout({
       <body>
         <Navbar/>
           <main className=''>
-            {children}
+            <SessionProvider>{children}</SessionProvider>
           </main>
         <Footer/>
       </body>
