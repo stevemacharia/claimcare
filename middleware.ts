@@ -1,25 +1,45 @@
-import { NextResponse } from "next/server";
-import jwt from "jsonwebtoken";
+import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
 
-const JWT_SECRET = process.env.JWT_SECRET as string;
+export function middleware(req: NextRequest) {
+  const { pathname } = req.nextUrl;
 
-export async function middleware(request: Request) {
-  const publicRoutes = ["/", "/register", "/login"];
+  // Paths that do not require authentication
+  const publicPaths = [
+    '/admin/login',
+    '/staff/login',
+    '/client/login',
+    '/client/register',
+  ];
 
-  const url = new URL(request.url);
-  if (publicRoutes.some((route) => url.pathname.startsWith(route))) {
+  // Check if the request is for a public path
+  if (publicPaths.some((path) => pathname.startsWith(path))) {
     return NextResponse.next();
   }
 
-  const token = request.headers.get("Authorization")?.replace("Bearer ", "");
-  if (!token) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  // Admin protected routes
+  if (pathname.startsWith('/admin')) {
+    const token = req.cookies.get('admin-token')?.value;
+    if (!token) {
+      return NextResponse.redirect(new URL('/admin/login', req.url));
+    }
   }
 
-  try {
-    jwt.verify(token, JWT_SECRET);
-    return NextResponse.next();
-  } catch {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  // Staff protected routes
+  if (pathname.startsWith('/staff')) {
+    const token = req.cookies.get('staff-token')?.value;
+    if (!token) {
+      return NextResponse.redirect(new URL('/staff/login', req.url));
+    }
   }
+
+  // Client protected routes
+  if (pathname.startsWith('/client')) {
+    const token = req.cookies.get('client-token')?.value;
+    if (!token) {
+      return NextResponse.redirect(new URL('/client/login', req.url));
+    }
+  }
+
+  return NextResponse.next();
 }
