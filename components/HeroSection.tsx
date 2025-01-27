@@ -4,8 +4,8 @@ import React from 'react'
 const HeroSection = () => {
   return (
     <div>
-      <div className="relative isolate ">
-        <section className="relative bg-hero bg-cover bg-center bg-no-repeat w-full">
+      <div className="relative isolate z-10 ">
+        <section className="relative bg-hero  bg-cover bg-center bg-no-repeat w-full">
           <div className='bg-gradient-to-r from-[#0057c3] bg-blend-multiply drop-shadow-md'>
               <div className="grid grid-cols-1 mx-auto flex max-w-7xl md:grid-cols-2 gap-4 justify-start">   
                 <div className=" mx-left max-w-2xl py-32 sm:py-48 lg:py-56">
