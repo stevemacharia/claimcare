@@ -1,5 +1,6 @@
 import Footer from '@/components/Footer'
 import Navbar from '@/components/Navbar'
+import MainLayout from '@/components/MainLayout';
 // src/app/layout.tsx
 import { SessionProvider } from "next-auth/react";
 import type { AppProps } from "next/app";
@@ -21,11 +22,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-
           <main className=''>
             {children}
           </main>
-
       </body>
     </html>
   );

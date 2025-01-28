@@ -1,4 +1,5 @@
 import React, { ReactNode } from 'react';
+import SecondaryNavbar from '@/components/SecondaryNavbar';
 
 type SecondaryLayoutProps = {
     children: ReactNode;
@@ -7,9 +8,10 @@ type SecondaryLayoutProps = {
 const SecondaryLayout: React.FC<SecondaryLayoutProps> = ({ children }) => {
     return (
         <div className="secondary-layout">
-            <header>Secondary Header</header>
-            <main>{children}</main>
-            <footer>Secondary Footer</footer>
+            <SecondaryNavbar>
+                <main>{children}</main>
+            </SecondaryNavbar>
+
         </div>
     );
 };

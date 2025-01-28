@@ -1,5 +1,5 @@
-import MainLayout from '@/components/MainLayout';
+import SecondaryLayout from '@/components/SecondaryLayout';
 
 export default function MainLayoutWrapper({ children }: { children: React.ReactNode }) {
-    return <MainLayout>{children}</MainLayout>;
+    return <SecondaryLayout>{children}</SecondaryLayout>;
 }
