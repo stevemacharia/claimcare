@@ -8,9 +8,9 @@ type SecondaryLayoutProps = {
 const SecondaryLayout: React.FC<SecondaryLayoutProps> = ({ children }) => {
     return (
         <div className="secondary-layout">
-            <SecondaryNavbar>
+            <SecondaryNavbar/>
                 <main>{children}</main>
-            </SecondaryNavbar>
+
 
         </div>
     );
