@@ -4,21 +4,13 @@ import React, { useState } from 'react'
 const SecondaryNavbar = () => {
     const [open, setOpen] = useState(false);
   return (
-    <header className={`flex w-full items-center bg-white dark:bg-dark`}>
+    <header className={`flex w-full items-center bg-white dark:bg-dark shadow-2`}>
       <div className="container">
         <div className="relative -mx-4 flex items-center justify-between">
           <div className="w-60 max-w-full px-4">
             <a href="/#" className="block w-full py-5">
-              <img
-                src="https://cdn.tailgrids.com/2.0/image/assets/images/logo/logo-primary.svg"
-                alt="logo"
-                className="dark:hidden"
-              />
-              <img
-                src="https://cdn.tailgrids.com/2.0/image/assets/images/logo/logo-white.svg"
-                alt="logo"
-                className="hidden dark:block"
-              />
+              <h2 className='text-xl font-bold'>CLAIM CARE</h2>
+
             </a>
           </div>
           <div className="flex w-full items-center justify-between px-4">

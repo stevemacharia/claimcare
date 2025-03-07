@@ -15,7 +15,7 @@ import {
   Alert,
 } from "@material-tailwind/react";
 import {
-  PresentationChartBarIcon,
+  HealthAndSafetyIcon,
   ShoppingBagIcon,
   UserCircleIcon,
   Cog6ToothIcon,
@@ -37,11 +37,10 @@ export default function ClientDashboard() {
   };
   
   return (
-    <Card className="h-[calc(100vh-2rem)] w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5">
+    <Card className="h-[calc(100vh-2rem)] w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5 rounded-none">
       <div className="mb-2 flex items-center gap-4 p-4">
-        <img src="https://docs.material-tailwind.com/img/logo-ct-dark.png" alt="brand" className="h-8 w-8" />
         <Typography variant="h5" color="blue-gray">
-          Sidebar
+          Dashboard
         </Typography>
       </div>
       <List>
@@ -57,10 +56,10 @@ export default function ClientDashboard() {
           <ListItem className="p-0" selected={open === 1}>
             <AccordionHeader onClick={() => handleOpen(1)} className="border-b-0 p-3">
               <ListItemPrefix>
-                <PresentationChartBarIcon className="h-5 w-5" />
+                {/* <HealthAndSafetyIcon strokeWidth={3} className="h-5 w-5" /> */}
               </ListItemPrefix>
               <Typography color="blue-gray" className="mr-auto font-normal">
-                Dashboard
+                Health
               </Typography>
             </AccordionHeader>
           </ListItem>
@@ -102,7 +101,7 @@ export default function ClientDashboard() {
                 <ShoppingBagIcon className="h-5 w-5" />
               </ListItemPrefix>
               <Typography color="blue-gray" className="mr-auto font-normal">
-                E-Commerce
+                Motorvehicle
               </Typography>
             </AccordionHeader>
           </ListItem>
