@@ -24,17 +24,32 @@ export default function HospitalVisitModal({ onSubmit }: { onSubmit: (data: any)
         setLoading(true);
         setMessage("");
 
-        const response = await onSubmit(formData);
+        console.log("Submitting form data:", formData); // 👈 Add this line
 
-        if (response.success) {
-            setMessage("Visit added successfully!");
-            setFormData({ name: "", department: "In-patient", amount: "", date: "", status: "" });
-            setTimeout(() => {
-                setIsOpen(false);
-                setMessage("");
-            }, 2000);
-        } else {
-            setMessage("Failed to add visit. Please try again.");
+        try {
+            const res = await fetch("/api/hospital-visits", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(formData),
+            });
+
+            const result = await res.json();
+
+            if (result.success) {
+                setMessage("Visit added successfully!");
+                setFormData({ name: "", department: "In-patient", amount: "", date: "", status: "" });
+
+                setTimeout(() => {
+                    setIsOpen(false);
+                    setMessage("");
+                    window.location.reload(); // ✅ this reloads the entire page
+                }, 2000);
+            } else {
+                setMessage("Failed to add visit. Please try again.");
+            }
+        } catch (error) {
+            console.error("Submit error:", error);
+            setMessage("Something went wrong.");
         }
 
         setLoading(false);
@@ -70,8 +85,8 @@ export default function HospitalVisitModal({ onSubmit }: { onSubmit: (data: any)
                                 onChange={handleChange}
                                 className="w-full border p-2 rounded mb-2"
                             >
-                                <option value="In-patient">In-patient</option>
-                                <option value="Out-patient">Out-patient</option>
+                                <option value="Inpatient">In-patient</option>
+                                <option value="Outpatient">Out-patient</option>
                                 <option value="A&E">A&E</option>
                             </select>
 
